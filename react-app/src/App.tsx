@@ -1,5 +1,9 @@
+import Button from '@material-ui/core/Button';
+import  Grid  from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
+
 import * as React from 'react';
+
 
 
 interface IState {
@@ -22,7 +26,16 @@ export default class App extends React.Component<{}, IState>{
             <div className="container-fluid">
                 <div className="centreText">
                     <Input placeholder="Search for the closest bus stop" onKeyPress={this.getRoute} />
-                    <p>{this.state.results.length <1 ? "":this.state.results[1]}</p>
+            
+                    <Grid container={true} spacing={24}>
+                    
+                            {this.state.results.map((name :any, index : any) => {
+                            return <Grid item ={true} xs={12} key={index}><Button >{name}</Button></Grid>
+                        })}
+                    </Grid>
+
+      
+                        
                     
                 </div>
             </div>
