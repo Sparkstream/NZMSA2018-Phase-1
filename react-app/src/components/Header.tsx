@@ -8,7 +8,7 @@ export const Header: React.StatelessComponent<{}> = () => {
         <Navbar>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <Link to="/">dankNotDank</Link>
+                    <Link to="/">Bus Stop Finder</Link>
                 </Navbar.Brand>
             </Navbar.Header>
             <Nav>

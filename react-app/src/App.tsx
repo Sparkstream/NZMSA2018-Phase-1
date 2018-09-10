@@ -23,22 +23,20 @@ export default class App extends React.Component<{}, IState>{
 
     public render() {
         return (
-            <div className="container-fluid">
-                <div className="centreText">
-                    <Input placeholder="Search for the closest bus stop" onKeyPress={this.getRoute} />
-            
-                    <Grid container={true} spacing={24}>
+            <Grid container={true} xs={12} justify='center'>
+       
+                    <Grid container={true} xs={8} justify='center' >
+                    <Input placeholder="Search for the closest bus stop" onKeyPress={this.getRoute} fullWidth={true}/>
+
+                    <Grid container={true} spacing={24} alignItems='center'>
                     
                             {this.state.results.map((name :any, index : any) => {
                             return <Grid item ={true} xs={12} key={index}><Button >{name}</Button></Grid>
                         })}
                     </Grid>
-
-      
-                        
-                    
-                </div>
-            </div>
+                    </Grid>
+            </Grid>        
+           
         )
     }
 
@@ -73,5 +71,6 @@ export default class App extends React.Component<{}, IState>{
             })
         }
     };
+    
 
 }
