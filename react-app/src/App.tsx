@@ -1,6 +1,6 @@
 import {Button, Grid, Input} from '@material-ui/core/';
-// import GoogleMap from 'google-map-react';
-// import MapComponent from './components/MapComponent';
+import GoogleMapReact from 'google-map-react';
+import MapComponent from './components/MapComponent';
 
 import * as React from 'react';
 
@@ -11,7 +11,6 @@ interface IState {
     lng: any,
     results: any
     stopLocation: any
-    stopName: string
 }
 
 export default class App extends React.Component<{}, IState>{
@@ -22,8 +21,7 @@ export default class App extends React.Component<{}, IState>{
             lat:-36.8485 ,
             lng: 174.7633,
             results: [],
-            stopLocation:[],
-            stopName: ""
+            stopLocation:[]
 
         }
         this.getRoute = this.getRoute.bind(this);
@@ -45,9 +43,15 @@ export default class App extends React.Component<{}, IState>{
                                 return <Grid item={true} xs={12} key={index}><Button onClick={this.centerMap} value={index}>{name}</Button></Grid>
                             })}
                         </Grid>
-                        <div style={{ height: '100vh', width: '100%' }}>
-                            <p>{this.state.lat},{this.state.lng}</p>     
+                        <div style={{ height: '100vh', width: '100%' }}>  
+                            <GoogleMapReact
+
+                                defaultCenter={{ lat:- 36.8485, lng: 174.7633}}
+                                defaultZoom={12}
+                            >
+                            <MapComponent  lat= {this.state.lat} lng= {this.state.lng}/> 
                             
+                            </GoogleMapReact>   
                         </div>
                     </Grid>
                 </Grid>
@@ -60,11 +64,10 @@ export default class App extends React.Component<{}, IState>{
     }
     private centerMap(event : any){
         // const index = event.target.value;
-        
         this.setState({
-            lat: this.state.stopLocation[event.target.value].lat,
-            lng: this.state.stopLocation[event.target.value].lng,
-            stopName: this.state.stopLocation[event.target.value].stop_name
+            lat: this.state.stopLocation[event.currentTarget.value].lat,
+            lng: this.state.stopLocation[event.currentTarget.value].lng
+            
         })
     }
     private getRoute(event: any) {
