@@ -103,8 +103,17 @@ export default class App extends React.Component<{}, IState>{
                                 count++;
                             }
                         }
+                        
 
                         );
+                        if(body.response.length <1){
+                            this.setState({
+                                loading:false,
+                                results:[],
+                                stopLocation:[]
+                               
+                            })
+                        }
                     })
                 }
                 return response;
